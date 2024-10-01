@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <title>The Dark Side Experience</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Smooth Scrolling -->
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://www.youtube.com/iframe_api"></script>
+  </head>
+  <body>
+    <!-- Sternenhimmel-Canvas -->
+    <canvas id="starfield"></canvas>
+
+    <!-- Ladebildschirm -->
+    <div id="loader">
+      <div class="loader-content">
+        <h2>Lade dein Erlebnis...</h2>
+        <div class="spinner"></div>
+      </div>
+    </div>
+
+    <!-- Passwortschutz -->
+    <div id="password-container">
+      <h2>Gib das Passwort ein, um fortzufahren</h2>
+      <input type="password" id="password-input" placeholder="Passwort" />
+      <button id="password-submit">Absenden</button>
+      <p id="password-error" class="hidden">
+        Falsches Passwort. Bitte versuche es erneut.
+      </p>
+    </div>
+
+    <!-- Sound Activation Modal -->
+    <div id="sound-modal" class="modal hidden">
+      <div class="modal-content">
+        <!-- Neues Kopfhörer-Symbol -->
+        <div class="icon-container">
+          <!-- Besser erkennbares SVG für Kopfhörer -->
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="64"
+            height="64"
+            fill="#fff"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M12 1C6.486 1 2 5.486 2 11v8c0 1.104.896 2 2 2h3v-7H5v-3c0-3.309 2.691-6 6-6s6 2.691 6 6v3h-2v7h3c1.104 0 2-.896 2-2v-8c0-5.514-4.486-10-10-10zM4 20v-4h3v4H4zm13 0v-4h3v4h-3z"
+            />
+          </svg>
+        </div>
+        <p>
+          Bitte aktiviere den Ton auf deinem Gerät, um das Erlebnis vollständig
+          zu genießen.
+        </p>
+        <button id="sound-confirm-button" class="cta-button">Bestätigen</button>
+      </div>
+    </div>
+
+    <!-- Hauptinhalt -->
+    <div id="main-content" class="hidden">
+      <!-- Startbildschirm -->
+      <section id="start-screen" class="section">
+        <div class="start-content">
+          <img src="assets/images/prism.png" alt="Prisma" class="prism" />
+          <button id="start-button" class="cta-button">Erlebnis starten</button>
+        </div>
+      </section>
+
+      <!-- Erlebnisbereich -->
+      <section id="experience" class="section hidden">
+        <div class="experience-content">
+          <center>
+            <h1 class="experience-title">
+              Willkommen zur Dark Side Experience
+            </h1>
+          </center>
+          <center><h2 class="experience-subtitle">Lieber Jens,</h2></center>
+          <center>
+            <p class="experience-description">
+              Tauche ein in ein unvergleichliches Erlebnis voller Magie und
+              Überraschungen.
+            </p>
+          </center>
+
+          <!-- Video Container -->
+          <div id="video-container" class="hidden">
+            <div id="player"></div>
+            <div class="video-controls">
+              <button id="pause-button" class="cta-button">⏸ Pausieren</button>
+              <!-- Play-Button wird hinzugefügt, wenn das Video pausiert ist -->
+              <button id="play-button" class="cta-button hidden">
+                ▶ Abspielen
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quiz Start Section -->
+      <section id="quiz-start-section" class="section hidden">
+        <button id="start-quiz-button" class="cta-button prominent">
+          Quiz starten
+        </button>
+      </section>
+
+      <!-- Quiz-Bereich -->
+      <section id="quiz" class="section hidden">
+        <h2>Teste dein Wissen über Pink Floyd</h2>
+        <div id="quiz-container">
+          <!-- Dynamisch geladene Quizfragen -->
+        </div>
+      </section>
+
+      <!-- Ergebnisanzeige -->
+      <section id="quiz-result" class="section hidden">
+        <h2>Dein Ergebnis</h2>
+        <p id="result-text"></p>
+        <button id="restart-quiz" class="cta-button">
+          Quiz erneut starten
+        </button>
+        <button id="back-to-start" class="cta-button">
+          Zurück zur Startseite
+        </button>
+      </section>
+
+      <!-- Countdown-Bereich -->
+      <section id="countdown" class="section hidden">
+        <h2>Countdown bis zur Show</h2>
+        <div id="timer">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front" id="days-front">0</div>
+              <div class="flip-card-back" id="days-back">0</div>
+            </div>
+            <span>Tage</span>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front" id="hours-front">0</div>
+              <div class="flip-card-back" id="hours-back">0</div>
+            </div>
+            <span>Stunden</span>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front" id="minutes-front">0</div>
+              <div class="flip-card-back" id="minutes-back">0</div>
+            </div>
+            <span>Minuten</span>
+          </div>
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front" id="seconds-front">0</div>
+              <div class="flip-card-back" id="seconds-back">0</div>
+            </div>
+            <span>Sekunden</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Galerie-Bereich -->
+      <section id="gallery" class="section hidden">
+        <h2>Gemeinsame Erinnerungen</h2>
+        <div class="gallery-container">
+          <img src="assets/images/photo1.jpg" alt="Foto 1" />
+          <img src="assets/images/photo2.jpg" alt="Foto 2" />
+          <img src="assets/images/photo3.jpg" alt="Foto 3" />
+        </div>
+      </section>
+
+      <!-- Geheimnisvolles Element -->
+      <div
+        id="secret"
+        style="
+          position: absolute;
+          bottom: 10px;
+          right: 10px;
+          width: 50px;
+          height: 50px;
+        "
+      ></div>
+    </div>
+  </body>
+</html>
