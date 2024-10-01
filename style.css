@@ -718,4 +718,9 @@ section {
     height: 48px;
     margin-bottom: 20px;
   }
+
+  .flip-card span {
+    margin-top: 15px;
+    font-size: 0.8em;
+  }
 }
