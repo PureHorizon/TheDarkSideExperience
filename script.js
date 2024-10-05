@@ -358,9 +358,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const galleryContainer = document.getElementById('gallery-container');
 
             const images = [
-                'image1.png',
-                'image2.png',
-                // Füge hier weitere Bilder hinzu
+                'image1.jpg',
+                'image2.jpg',
+                'image3.jpg',
+                'image4.jpg',
+                'image5.jpg',
+                'image6.jpg',
+                'image7.jpg',
+                'image8.jpg'
             ];
 
             images.forEach((imageName) => {

@@ -698,6 +698,22 @@ section {
   max-width: 90%;
   max-height: 90%;
   border-radius: 10px;
+  object-fit: contain;
+}
+
+.gallery-image {
+  width: 200px; /* Feste Breite für Galerie-Bilder */
+  height: auto; /* Behält das Seitenverhältnis bei */
+  margin: 10px;
+  border: 2px solid #fff;
+  border-radius: 10px;
+  object-fit: cover; /* Stellt sicher, dass das Bild das Seitenverhältnis beibehält */
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.gallery-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #fff;
 }
 
 .close-button {
