@@ -48,12 +48,24 @@ document.addEventListener("DOMContentLoaded", () => {
         submitButton.textContent = "Weiter";
         submitButton.classList.add("cta-button");
 
-        const cancelButton = createCancelButton(); // Erstelle Abbrechen-Button
+        const cancelButton = document.createElement("button");
+        cancelButton.textContent = "Abbrechen";
+        cancelButton.classList.add("cta-button");
 
+        // Stil für den Container, der beide Buttons enthält
+        const buttonContainer = document.createElement("div");
+        buttonContainer.style.display = "flex";
+        buttonContainer.style.flexDirection = "column";
+        buttonContainer.style.alignItems = "center"; // Zentriert die Buttons horizontal
+
+        // Buttons zum Container hinzufügen
+        buttonContainer.appendChild(submitButton);
+        buttonContainer.appendChild(cancelButton);
+
+        // Füge den Button-Container zum Quiz-Card hinzu
         quizCard.appendChild(questionElement);
         quizCard.appendChild(optionsDiv);
-        quizCard.appendChild(submitButton);
-        quizCard.appendChild(cancelButton); // Füge den Abbrechen-Button hinzu
+        quizCard.appendChild(buttonContainer);
 
         submitButton.addEventListener("click", () => {
             const selectedOption = document.querySelector('input[name="option"]:checked');
@@ -67,6 +79,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 showResult();
             }
         });
+
+        cancelButton.addEventListener("click", () => {
+            if (confirm("Möchtest du das Quiz wirklich abbrechen und zur Hauptseite zurückkehren?")) {
+                window.location.href = 'main.html';
+            }
+        });
     }
 
     function showResult() {
@@ -75,7 +93,21 @@ document.addEventListener("DOMContentLoaded", () => {
         restartButton.textContent = "Quiz erneut starten";
         restartButton.classList.add("cta-button");
 
-        const cancelButton = createCancelButton(); // Erstelle Abbrechen-Button für das Ergebnis
+        const cancelButton = document.createElement("button");
+        cancelButton.textContent = "Abbrechen";
+        cancelButton.classList.add("cta-button");
+
+        const buttonContainer = document.createElement("div");
+        buttonContainer.style.display = "flex";
+        buttonContainer.style.flexDirection = "column";
+        buttonContainer.style.alignItems = "center";
+
+        restartButton.style.marginBottom = "20px";
+
+        buttonContainer.appendChild(restartButton);
+        buttonContainer.appendChild(cancelButton);
+
+        quizCard.appendChild(buttonContainer);
 
         restartButton.addEventListener("click", () => {
             currentQuiz = 0;
@@ -83,23 +115,11 @@ document.addEventListener("DOMContentLoaded", () => {
             loadQuiz();
         });
 
-        quizCard.appendChild(restartButton);
-        quizCard.appendChild(cancelButton); // Füge den Abbrechen-Button hinzu
-    }
-
-    function createCancelButton() {
-        const cancelButton = document.createElement("button");
-        cancelButton.textContent = "Abbrechen";
-        cancelButton.classList.add("cta-button");
-        cancelButton.style.backgroundColor = "red"; // Farbe für "Abbrechen"-Button
-
         cancelButton.addEventListener("click", () => {
             if (confirm("Möchtest du das Quiz wirklich abbrechen und zur Hauptseite zurückkehren?")) {
-                window.location.href = 'main.html'; // Zurück zur Hauptseite
+                window.location.href = 'main.html';
             }
         });
-
-        return cancelButton;
     }
 
     loadQuiz();

@@ -522,9 +522,13 @@ section {
   border: none;
   padding: 15px 30px;
   font-size: 1.2em;
-  border-radius: 20px; /* Mehr abgerundet */
+  border-radius: 20px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cta-button + .cta-button {
+  margin-top: 20px;
 }
 
 .cta-button:hover {

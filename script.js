@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function countdown() {
-            const eventDate = new Date("2024-12-31T23:59:59"); // Setze ein zukünftiges Datum zum Testen
+            const eventDate = new Date("2024-10-12T23:22:45");
             const now = new Date();
             const timeLeft = eventDate - now;
 
