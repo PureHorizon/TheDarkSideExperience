@@ -32,7 +32,7 @@ section {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -3;
+  z-index: -1; /* Angepasster z-index */
   background-color: transparent;
 }
 
@@ -325,6 +325,23 @@ section {
   border-radius: 20px; /* Mehr abgerundet */
 }
 
+.quit-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ff0000;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.quit-button:hover {
+  background-color: #cc0000;
+}
+
 /* Erlebnisbereich */
 #experience {
   animation: fadeIn 2s forwards;
@@ -393,7 +410,7 @@ section {
 
 /* Video Container */
 #video-container {
-  margin-top: 0px;
+  margin-top: -10px;
   margin-bottom: 20px;
   animation: fadeIn 2s;
   position: relative;
@@ -446,7 +463,7 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  min-height: 100vh;
   padding: 20px;
 }
 
@@ -655,7 +672,7 @@ section {
 }
 
 .down-arrow {
-  width: 40px; /* Größe des Pfeils */
+  width: 40px;
   height: auto;
   animation: floatUpDown 2s infinite;
 }
@@ -804,7 +821,7 @@ section {
 
 @media (max-width: 600px) {
   .quiz-container {
-    height: auto;
+    min-height: auto;
     padding: 10px;
   }
 
