@@ -354,22 +354,46 @@ document.addEventListener("DOMContentLoaded", () => {
             animateStarfield();
         }
 
-        // Dynamische Ladefunktion für Bilder in der Galerie
         function loadGalleryImages() {
             const galleryContainer = document.getElementById('gallery-container');
-            fetch('assets/Erinnerungen/images.json')
-                .then(response => response.json())
-                .then(images => {
-                    images.forEach((imageName) => {
-                        const imgElement = document.createElement('img');
-                        imgElement.src = `assets/Erinnerungen/${imageName}`;
-                        imgElement.alt = 'Erinnerung';
-                        galleryContainer.appendChild(imgElement);
-                    });
-                })
-                .catch(error => {
-                    console.error('Fehler beim Laden der Bilder:', error);
-                });
+
+            const images = [
+                'image1.png',
+                'image2.png',
+                // Füge hier weitere Bilder hinzu
+            ];
+
+            images.forEach((imageName) => {
+                const imgElement = document.createElement('img');
+                imgElement.src = `assets/Erinnerungen/${imageName}`;
+                imgElement.alt = 'Erinnerung';
+                imgElement.classList.add('gallery-image'); // Hinzufügen einer Klasse zur Steuerung der Bilder
+                imgElement.addEventListener('click', () => openImageModal(imgElement.src));
+                galleryContainer.appendChild(imgElement);
+            });
+        }
+
+        // Bild-Modal-Funktion
+        function openImageModal(imageSrc) {
+            const modal = document.createElement('div');
+            modal.classList.add('image-modal');
+            modal.innerHTML = `
+                <span class="close-button">&times;</span>
+                <img src="${imageSrc}" class="modal-image" />
+            `;
+            document.body.appendChild(modal);
+
+            const closeButton = modal.querySelector('.close-button');
+            closeButton.addEventListener('click', () => {
+                document.body.removeChild(modal);
+            });
+
+            // Schließen durch Klick außerhalb des Bildes
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                }
+            });
         }
 
         // Lade die Bilder für die Galerie
