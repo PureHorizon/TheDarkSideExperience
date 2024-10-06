@@ -1,154 +1,160 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <title>The Dark Side Experience</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap"
-    rel="stylesheet"
-  />
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <link rel="icon" type="image/vnd.microsoft.icon" href="assets/images/favicon.ico">
+    <meta charset="UTF-8" />
+    <title>The Dark Side Experience</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap"
+            rel="stylesheet"
+    />
+    <link rel="icon" type="image/vnd.microsoft.icon" href="assets/images/favicon.ico">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+    <!-- Dein Skript sollte nach den Firebase-Skripten geladen werden -->
+    <script src="script.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 <body>
-  <!-- Sternenhimmel-Canvas -->
-  <canvas id="starfield"></canvas>
+<!-- Sternenhimmel-Canvas -->
+<canvas id="starfield"></canvas>
 
-  <!-- Ladebildschirm -->
-  <div id="loader" class="hidden">
+<!-- Ladebildschirm -->
+<div id="loader" class="hidden">
     <div class="loader-content">
-      <h2>Lade dein Erlebnis...</h2>
-      <div class="spinner"></div>
+        <h2>Lade dein Erlebnis...</h2>
+        <div class="spinner"></div>
     </div>
-  </div>
+</div>
 
-  <!-- Sound Activation Modal -->
-  <div id="sound-modal" class="modal hidden">
+<!-- Sound Activation Modal -->
+<div id="sound-modal" class="modal hidden">
     <!-- Feuerfliegen-Canvas -->
     <canvas id="fireflies"></canvas>
     <div class="modal-content">
-      <!-- Kopfhörer Bild -->
-      <div class="icon-container">
-        <img src="assets/images/headphone.png" alt="Kopfhörer" width="64" height="64" />
-      </div>
-      <p>
-        Bitte aktiviere den Ton auf deinem Gerät, um das Erlebnis vollständig
-        zu genießen.
-      </p>
-      <button id="sound-confirm-button" class="cta-button">Bestätigen</button>
+        <!-- Kopfhörer Bild -->
+        <div class="icon-container">
+            <img src="assets/images/headphone.png" alt="Kopfhörer" width="64" height="64" />
+        </div>
+        <p>
+            Bitte aktiviere den Ton auf deinem Gerät, um das Erlebnis vollständig
+            zu genießen.
+        </p>
+        <button id="sound-confirm-button" class="cta-button">Bestätigen</button>
     </div>
-  </div>
+</div>
 
-  <!-- Hauptinhalt -->
-  <div id="main-content" class="hidden">
+<!-- Hauptinhalt -->
+<div id="main-content" class="hidden">
     <!-- Erlebnisbereich -->
     <section id="experience" class="section">
-      <div class="experience-content">
-        <center>
-          <h1 class="experience-title">
-            Willkommen zur Dark Side Experience
-          </h1>
-        </center>
-        <center><h2 class="experience-subtitle">Lieber Jens,</h2></center>
-        <center>
-          <p class="experience-description">
-            Tauche ein in ein unvergleichliches Erlebnis voller Magie und
-            Überraschungen.
-          </p>
-        </center>
-        <!-- Scroll-Container -->
-        <div class="scroll-container">
-          <img src="assets/images/down-arrow.png" alt="Weiter" class="down-arrow" />
+        <div class="experience-content">
+            <center>
+                <h1 class="experience-title">
+                    Willkommen zur Dark Side Experience
+                </h1>
+            </center>
+            <center><h2 class="experience-subtitle">Lieber Jens,</h2></center>
+            <center>
+                <p class="experience-description">
+                    Tauche ein in ein unvergleichliches Erlebnis voller Magie und
+                    Überraschungen.
+                </p>
+            </center>
+            <!-- Scroll-Container -->
+            <div class="scroll-container">
+                <img src="assets/images/down-arrow.png" alt="Weiter" class="down-arrow" />
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- Video Section -->
     <section id="video-section" class="section">
-      <div id="video-container">
-        <div id="player"></div>
-        <div class="video-controls">
-          <button id="pause-button" class="cta-button">⏸ Pausieren</button>
-          <button id="play-button" class="cta-button hidden">
-            ▶ Abspielen
-          </button>
+        <div id="video-container">
+            <div id="player"></div>
+            <div class="video-controls">
+                <button id="pause-button" class="cta-button">⏸ Pausieren</button>
+                <button id="play-button" class="cta-button hidden">
+                    ▶ Abspielen
+                </button>
+            </div>
         </div>
-      </div>
-      <div class="scroll-container">
-        <img src="assets/images/down-arrow.png" alt="Weiter" class="down-arrow" />
-      </div>
+        <div class="scroll-container">
+            <img src="assets/images/down-arrow.png" alt="Weiter" class="down-arrow" />
+        </div>
     </section>
 
     <!-- Quiz Start Section -->
     <section id="quiz-start-section" class="section">
-      <button id="start-quiz-button" class="cta-button prominent">
-        Quiz starten
-      </button>
-      <!-- Scroll-Container -->
-      <div class="scroll-container">
-        <img src="assets/images/down-arrow.png" alt="Weiter" class="down-arrow" />
-      </div>
+        <button id="start-quiz-button" class="cta-button prominent">
+            Quiz starten
+        </button>
+        <!-- Scroll-Container -->
+        <div class="scroll-container">
+            <img src="assets/images/down-arrow.png" alt="Weiter" class="down-arrow" />
+        </div>
     </section>
 
     <!-- Countdown Section -->
     <section id="countdown" class="section">
-      <h2>Countdown bis zur Show</h2>
-      <div id="timer">
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front" id="days-front">0</div>
-            <div class="flip-card-back" id="days-back">0</div>
-          </div>
-          <span>Tage</span>
+        <h2>Countdown bis zur Show</h2>
+        <div id="timer">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front" id="days-front">0</div>
+                    <div class="flip-card-back" id="days-back">0</div>
+                </div>
+                <span>Tage</span>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front" id="hours-front">0</div>
+                    <div class="flip-card-back" id="hours-back">0</div>
+                </div>
+                <span>Stunden</span>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front" id="minutes-front">0</div>
+                    <div class="flip-card-back" id="minutes-back">0</div>
+                </div>
+                <span>Minuten</span>
+            </div>
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="flip-card-front" id="seconds-front">0</div>
+                    <div class="flip-card-back" id="seconds-back">0</div>
+                </div>
+                <span>Sekunden</span>
+            </div>
         </div>
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front" id="hours-front">0</div>
-            <div class="flip-card-back" id="hours-back">0</div>
-          </div>
-          <span>Stunden</span>
+        <!-- Scroll-Container -->
+        <div class="scroll-container">
+            <img src="assets/images/down-arrow.png" alt="Weiter" class="down-arrow" />
         </div>
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front" id="minutes-front">0</div>
-            <div class="flip-card-back" id="minutes-back">0</div>
-          </div>
-          <span>Minuten</span>
-        </div>
-        <div class="flip-card">
-          <div class="flip-card-inner">
-            <div class="flip-card-front" id="seconds-front">0</div>
-            <div class="flip-card-back" id="seconds-back">0</div>
-          </div>
-          <span>Sekunden</span>
-        </div>
-      </div>
-      <!-- Scroll-Container -->
-      <div class="scroll-container">
-        <img src="assets/images/down-arrow.png" alt="Weiter" class="down-arrow" />
-      </div>
     </section>
 
     <!-- Galerie Section -->
     <section id="gallery" class="section">
-      <h2>Gemeinsame Erinnerungen</h2>
-      <div class="gallery-container" id="gallery-container">
-      </div>
-      <!-- Kein Scroll-Container hier, da dies die letzte Sektion ist -->
+        <h2>Gemeinsame Erinnerungen</h2>
+        <div class="gallery-container" id="gallery-container">
+        </div>
+        <!-- Kein Scroll-Container hier, da dies die letzte Sektion ist -->
     </section>
 
     <!-- Geheimnisvolles Element -->
     <div
-      id="secret"
-      class="secret-icon"
-      title="Klicke mich für eine Überraschung!"
+            id="secret"
+            class="secret-icon"
+            title="Klicke mich für eine Überraschung!"
     ></div>
-  </div>
+</div>
 
-  <!-- Hintergrundmusik -->
-  <audio id="ambience-music" src="assets/audio/space_ambience.mp3" loop></audio>
+<!-- Hintergrundmusik -->
+<audio id="ambience-music" src="assets/audio/space_ambience.mp3" loop></audio>
 </body>
 </html>

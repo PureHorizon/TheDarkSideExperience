@@ -1,45 +1,49 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <title>The Dark Side Experience - Login</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="script.js"></script>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="icon" type="image/vnd.microsoft.icon" href="assets/images/favicon.ico">
+    <meta charset="UTF-8"/>
+    <title>The Dark Side Experience - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="style.css"/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap"
+            rel="stylesheet"
+    />
+    <link rel="icon" type="image/vnd.microsoft.icon" href="assets/images/favicon.ico">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+
+    <!-- Dein Skript sollte nach den Firebase-Skripten geladen werden -->
+    <script defer src="script.js"></script>
 </head>
 <body>
-  <!-- Passwortschutz (Login) -->
-  <div id="login-container" class="modal">
+<!-- Passwortschutz (Login) -->
+<div id="login-container" class="modal">
     <div class="modal-content">
-      <h2>Login</h2>
-      <input type="email" id="email-input" placeholder="E-Mail" required />
-      <input type="password" id="password-input" placeholder="Passwort" required />
-      <button id="login-button" class="cta-button">Anmelden</button>
-      <p id="login-error" class="error-message hidden">Falsches Passwort. Bitte versuche es erneut.</p>
+        <h2>Login</h2>
+        <input type="email" id="email-input" placeholder="E-Mail" required/>
+        <input type="password" id="password-input" placeholder="Passwort" required/>
+        <button id="login-button" class="cta-button">Anmelden</button>
+        <p id="login-error" class="error-message hidden">Falsches Passwort. Bitte versuche es erneut.</p>
     </div>
-  </div>
+</div>
 
-  <!-- Startbildschirm -->
-  <section id="start-screen" class="section hidden">
+<!-- Startbildschirm -->
+<section id="start-screen" class="section hidden">
     <div class="start-content">
-      <img src="assets/images/prism.png" alt="Prisma" class="prism" />
-      <button id="start-button" class="cta-button">Erlebnis starten</button>
+        <img src="assets/images/prism.png" alt="Prisma" class="prism"/>
+        <button id="start-button" class="cta-button">Erlebnis starten</button>
     </div>
-  </section>
+</section>
 
-  <!-- Hauptinhalt wird im iframe geladen -->
-  <div id="main-content-container" class="hidden">
+<!-- Hauptinhalt wird im iframe geladen -->
+<div id="main-content-container" class="hidden">
     <iframe id="main-iframe" src="" frameborder="0" width="100%" height="100%"></iframe>
-  </div>
+</div>
 
-  <!-- Audio-Element für den Sound -->
-  <audio id="ambience-music" src="assets/audio/space_ambience.mp3" loop></audio>
-
-  <script src="script.js"></script>
+<!-- Audio-Element für den Sound -->
+<audio id="ambience-music" src="assets/audio/space_ambience.mp3" loop></audio>
 </body>
 </html>
