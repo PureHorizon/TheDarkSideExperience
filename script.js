@@ -269,6 +269,23 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }
 
+        // Logout Button Event-Listener
+        const logoutButton = document.getElementById("logout-button");
+        if (logoutButton) {
+            logoutButton.addEventListener("click", () => {
+                console.log("Logout-Button wurde geklickt.");
+                auth.signOut().then(() => {
+                    console.log("Benutzer erfolgreich abgemeldet.");
+                    sessionStorage.removeItem('loggedIn'); // Entferne den Anmeldestatus
+                    window.location.href = 'index.html'; // Leite zur Login-Seite weiter
+                }).catch((error) => {
+                    console.error("Fehler beim Abmelden:", error);
+                    alert("Fehler beim Abmelden: " + error.message);
+                });
+            });
+        }
+
+
         // Hilfsfunktionen
         function fadeOutAudio(audio, duration) {
             console.log("Starte Fade-Out der Audio.");
