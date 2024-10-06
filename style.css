@@ -100,7 +100,7 @@ section {
     text-align: center;
 
     /* Transition für sanfte Hover-Effekte */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
 }
 
 .login-container:hover {
@@ -199,7 +199,7 @@ section {
     font-size: 16px;
 
     /* Transition für sanfte Hover-Effekte */
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .login-form .cta-button:hover {
@@ -262,12 +262,12 @@ section {
     cursor: pointer;
     background-color: #ff0000;
     color: #fff;
-    transition: background-color 0.3s, transform 0.3s;
+    transition: background-color 0.3s, transform 0.3s ease;
 }
 
 #login-button:hover {
     background-color: #cc0000;
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 #login-message {
@@ -333,12 +333,12 @@ section {
     border-radius: 15px; /* Mehr abgerundet */
     background-color: #ff0000;
     color: #fff;
-    transition: background-color 0.3s, transform 0.3s;
+    transition: background-color 0.3s, transform 0.3s ease;
 }
 
 #sound-confirm-button:hover {
     background-color: #cc0000;
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .hidden {
@@ -382,11 +382,11 @@ section {
     border-radius: 20px; /* Mehr abgerundet */
     cursor: pointer;
     animation: gradientShift 10s ease infinite;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s;
 }
 
 .cta-button:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
