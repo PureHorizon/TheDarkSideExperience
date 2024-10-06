@@ -379,7 +379,7 @@ section {
     background-size: 600% 600%;
     color: #000;
     border: none;
-    border-radius: 20px; /* Mehr abgerundet */
+    border-radius: 15px; /* Mehr abgerundet */
     cursor: pointer;
     animation: gradientShift 10s ease infinite;
     transition: transform 0.3s ease, box-shadow 0.3s;
@@ -398,7 +398,7 @@ section {
     animation: gradientShift 5s ease infinite;
     box-shadow: 0 0 20px rgba(0, 255, 153, 0.5);
     margin-top: 40px; /* Mehr Abstand oben */
-    border-radius: 20px; /* Mehr abgerundet */
+    border-radius: 15px; /* Mehr abgerundet */
 }
 
 .quit-button {
@@ -517,7 +517,7 @@ section {
     font-size: 18px; /* Größere Schrift */
     cursor: pointer;
     border: none;
-    border-radius: 20px; /* Mehr abgerundet */
+    border-radius: 15px; /* Mehr abgerundet */
     background-color: #333;
     color: #fff;
     transition: background-color 0.3s, transform 0.3s;
@@ -598,7 +598,7 @@ section {
     border: none;
     padding: 15px 30px;
     font-size: 1.2em;
-    border-radius: 20px;
+    border-radius: 15px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
@@ -622,7 +622,7 @@ section {
     background-color: #ff0000;
     color: #fff;
     border: none;
-    border-radius: 20px; /* Mehr abgerundet */
+    border-radius: 15px; /* Mehr abgerundet */
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
     z-index: 50;
