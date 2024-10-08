@@ -790,6 +790,7 @@ section {
 .gallery-image:hover {
     transform: scale(1.05);
     box-shadow: 0 0 10px #fff;
+    cursor: pointer;
 }
 
 .close-button {
