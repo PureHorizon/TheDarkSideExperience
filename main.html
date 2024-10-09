@@ -18,6 +18,7 @@
     <!-- Dein Skript sollte nach den Firebase-Skripten geladen werden -->
     <script src="script.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
 <!-- Header mit Logout-Button -->
@@ -152,11 +153,16 @@
     </section>
 
     <!-- Geheimnisvolles Element -->
-    <div
-            id="secret"
-            class="secret-icon"
-            title="Klicke mich für eine Überraschung!"
-    ></div>
+    <button id="confettiButton" class="confetti-button">🎉</button>
+
+    <!-- Popup für Happy Birthday Nachricht -->
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <h2>Happy Birthday!</h2>
+            <p>Alles Gute zum Geburtstag!</p>
+            <button id="closePopup" class="surprise-close-button">Schließen</button>
+        </div>
+    </div>
 </div>
 
 <!-- Hintergrundmusik -->

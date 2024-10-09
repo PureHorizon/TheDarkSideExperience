@@ -16,6 +16,8 @@ console.log("Firebase wurde initialisiert.");
 const auth = firebase.auth();
 console.log("Firebase Auth wurde initialisiert.");
 
+let confettiRunning = false; // Konfetti-Status
+
 // YouTube IFrame API ready callback
 let player;
 
@@ -23,21 +25,10 @@ let player;
 function onYouTubeIframeAPIReady() {
     console.log("YouTube IFrame API ist bereit.");
     player = new YT.Player("player", {
-        height: "600",
-        width: window.innerWidth > 1200 ? "1200" : "100%",
-        videoId: "k9ynZnEBtvw",
-        events: {
-            onReady: onPlayerReady,
-            onStateChange: onPlayerStateChange,
-        },
-        playerVars: {
-            autoplay: 0,
-            controls: 0,
-            rel: 0,
-            modestbranding: 1,
-            showinfo: 0,
-            enablejsapi: 1,
-            preload: 1,
+        height: "600", width: window.innerWidth > 1200 ? "1200" : "100%", videoId: "k9ynZnEBtvw", events: {
+            onReady: onPlayerReady, onStateChange: onPlayerStateChange,
+        }, playerVars: {
+            autoplay: 0, controls: 0, rel: 0, modestbranding: 1, showinfo: 0, enablejsapi: 1, preload: 1,
         },
     });
 }
@@ -448,16 +439,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("Lade Galerie-Bilder.");
             const galleryContainer = document.getElementById('gallery-container');
 
-            const images = [
-                'image1.jpg',
-                'image2.jpg',
-                'image3.jpg',
-                'image4.jpg',
-                'image5.jpg',
-                'image6.jpg',
-                'image7.jpg',
-                'image8.jpg'
-            ];
+            const images = ['image1.jpg', 'image2.jpg', 'image3.jpg', 'image4.jpg', 'image5.jpg', 'image6.jpg', 'image7.jpg', 'image8.jpg'];
 
             images.forEach((imageName) => {
                 const imgElement = document.createElement('img');
@@ -493,6 +475,60 @@ document.addEventListener("DOMContentLoaded", () => {
                     document.body.removeChild(modal);
                 }
             });
+        }
+
+        // Surprise-Button (Easter Egg)
+        // Funktion für das Auslösen des Popups und Konfetti
+        document.getElementById("confettiButton").addEventListener("click", function () {
+            // Zeigt das Popup an
+            document.getElementById("popup").style.display = "block";
+
+            // Startet das Konfetti, wenn es noch nicht läuft
+            if (!confettiRunning) {
+                startConfetti();
+            }
+        });
+
+        // Schließt das Popup
+        document.getElementById("closePopup").addEventListener("click", function () {
+            document.getElementById("popup").style.display = "none";
+            stopConfetti(); // Stoppt das Konfetti
+        });
+
+        // Konfetti-Funktion
+        function startConfetti() {
+            confettiRunning = true; // Setzt den Status auf "läuft"
+
+            var duration = 3 * 1000; // Konfetti-Dauer (5 Sekunden)
+            var end = Date.now() + duration;
+
+            (function frame() {
+                // Erzeugt die Konfetti-Animation
+                confetti({
+                    particleCount: 7,
+                    angle: 60,
+                    spread: 55,
+                    origin: {x: 0}
+                });
+                confetti({
+                    particleCount: 7,
+                    angle: 120,
+                    spread: 55,
+                    origin: {x: 1}
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                } else {
+                    confettiRunning = false; // Setzt den Status zurück, wenn das Konfetti fertig ist
+                }
+            }());
+        }
+
+        // Stopp-Funktion für das Konfetti
+        function stopConfetti() {
+            confetti.reset(); // Beendet alle Konfetti-Animationen
+            confettiRunning = false; // Setzt den Status auf "nicht läuft"
         }
 
         // Lade die Bilder für die Galerie

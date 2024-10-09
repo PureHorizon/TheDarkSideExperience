@@ -27,7 +27,7 @@ section {
     justify-content: center;
     flex-direction: column;
     scroll-snap-align: start; /* Scroll Snapping */
-    padding: 20px;
+    padding: -60px 20px; /* Mehr Padding oben */
     position: relative;
 }
 
@@ -451,11 +451,11 @@ section {
 }
 
 .down-arrow {
-    width: 40px; /* Adjust size if necessary */
+    width: 40px;
     height: auto;
-    margin-top: 10px; /* Distance between the text and the arrow */
+    margin-top: 10px;
     animation: floatUpDown 2s infinite;
-    pointer-events: none; /* Make sure the arrow is not clickable */
+    pointer-events: none; /* Stellt sicher, dass der Pfeil nicht anklickbar ist */
 }
 
 /* Up Arrow für Quiz-Seite */
@@ -486,7 +486,7 @@ section {
 
 /* Video Container */
 #video-container {
-    margin-top: -10px;
+    margin-top: 0px;
     margin-bottom: 20px;
     animation: fadeIn 2s;
     position: relative;
@@ -737,7 +737,7 @@ section {
 /* Scroll Container */
 .scroll-container {
     position: absolute;
-    bottom: 60px; /* Abstand vom unteren Rand */
+    bottom: 30px; /* Abstand vom unteren Rand */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -751,12 +751,6 @@ section {
     font-size: 1.2em;
     color: #ffffff;
     margin-bottom: 10px;
-}
-
-.down-arrow {
-    width: 40px;
-    height: auto;
-    animation: floatUpDown 2s infinite;
 }
 
 .image-modal {
@@ -841,6 +835,67 @@ section {
 
 #logout-button:active {
     transform: scale(1);
+}
+
+.confetti-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+    border-radius: 50px;
+    font-size: 24px;
+    z-index: 1000;
+}
+
+.confetti-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    color: white;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    text-align: center;
+    padding: 20px;
+    color: black;
+}
+
+.popup-content h2 {
+    margin-bottom: 15px;
+    color: black;
+}
+
+.popup-content p {
+    color: black;
+}
+
+.surprise-close-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.2s ease;
+}
+
+.surprise-close-button:hover {
+    background-color: darkred;
 }
 
 /* Animationen */
@@ -1081,6 +1136,15 @@ section {
         top: 20px;
         right: 20px;
         width: 40px;
+    }
+
+    .confetti-button {
+        font-size: 20px;
+        padding: 8px 12px;
+    }
+
+    .popup {
+        width: 90%;
     }
 }
 
