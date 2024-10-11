@@ -47,6 +47,74 @@ function onPlayerStateChange(event) {
     }
 }
 
+// Feuerfliegen-Animation
+function initFireflies() {
+    console.log("Initialisiere Feuerfliegen-Animation.");
+    const firefliesCanvas = document.getElementById("fireflies");
+    if (!firefliesCanvas) {
+        console.error("Feuerfliegen-Canvas nicht gefunden!");
+        return;
+    }
+    const ctx = firefliesCanvas.getContext("2d");
+    const fireflies = [];
+    const numFireflies = 80;
+
+    class Firefly {
+        constructor() {
+            this.reset();
+        }
+
+        reset() {
+            this.x = Math.random() * firefliesCanvas.width;
+            this.y = Math.random() * firefliesCanvas.height;
+            this.radius = Math.random() * 3 + 1;
+            this.alpha = Math.random() * 0.5 + 0.5;
+            this.speedX = (Math.random() - 0.5) * 1;
+            this.speedY = (Math.random() - 0.5) * 1;
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            if (this.x > firefliesCanvas.width || this.x < 0 || this.y > firefliesCanvas.height || this.y < 0) {
+                this.reset();
+            }
+        }
+
+        draw(ctx) {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 255, 200, ${this.alpha})`; // Korrigiert mit Backticks
+            ctx.fill();
+        }
+    }
+
+    for (let i = 0; i < numFireflies; i++) {
+        fireflies.push(new Firefly());
+    }
+
+    function animateFireflies() {
+        ctx.clearRect(0, 0, firefliesCanvas.width, firefliesCanvas.height);
+        fireflies.forEach((firefly) => {
+            firefly.update();
+            firefly.draw(ctx);
+        });
+        requestAnimationFrame(animateFireflies);
+    }
+
+    function resizeFirefliesCanvas() {
+        firefliesCanvas.width = window.innerWidth;
+        firefliesCanvas.height = window.innerHeight;
+        fireflies.forEach((firefly) => {
+            firefly.reset();
+        });
+    }
+
+    window.addEventListener("resize", resizeFirefliesCanvas);
+    resizeFirefliesCanvas();
+    animateFireflies();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     console.log("DOMContentLoaded ausgelöst.");
 
@@ -115,6 +183,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.href = 'main.html'; // Navigiere zu main.html
             });
         }
+
+        initFireflies();
     }
 
     // --- Funktionen für main.html ---
@@ -124,7 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const quitQuizButton = document.getElementById("quit-quiz-button");
 
     if (mainContent) {
-        console.log("main-content erkannt.");
 
         // Überprüfe den Anmeldestatus
         if (sessionStorage.getItem('loggedIn') !== 'true') {
@@ -309,70 +378,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        // Feuerfliegen-Animation
-        function initFireflies() {
-            console.log("Initialisiere Feuerfliegen-Animation.");
-            const firefliesCanvas = document.getElementById("fireflies");
-            const ctx = firefliesCanvas.getContext("2d");
-            const fireflies = [];
-            const numFireflies = 80;
-
-            class Firefly {
-                constructor() {
-                    this.reset();
-                }
-
-                reset() {
-                    this.x = Math.random() * firefliesCanvas.width;
-                    this.y = Math.random() * firefliesCanvas.height;
-                    this.radius = Math.random() * 3 + 1;
-                    this.alpha = Math.random() * 0.5 + 0.5;
-                    this.speedX = (Math.random() - 0.5) * 1;
-                    this.speedY = (Math.random() - 0.5) * 1;
-                }
-
-                update() {
-                    this.x += this.speedX;
-                    this.y += this.speedY;
-                    if (this.x > firefliesCanvas.width || this.x < 0 || this.y > firefliesCanvas.height || this.y < 0) {
-                        this.reset();
-                    }
-                }
-
-                draw(ctx) {
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 255, 200, ${this.alpha})`;
-                    ctx.fill();
-                }
-            }
-
-            for (let i = 0; i < numFireflies; i++) {
-                fireflies.push(new Firefly());
-            }
-
-            function animateFireflies() {
-                ctx.clearRect(0, 0, firefliesCanvas.width, firefliesCanvas.height);
-                fireflies.forEach((firefly) => {
-                    firefly.update();
-                    firefly.draw(ctx);
-                });
-                requestAnimationFrame(animateFireflies);
-            }
-
-            function resizeFirefliesCanvas() {
-                firefliesCanvas.width = window.innerWidth;
-                firefliesCanvas.height = window.innerHeight;
-                fireflies.forEach((firefly) => {
-                    firefly.reset();
-                });
-            }
-
-            window.addEventListener("resize", resizeFirefliesCanvas);
-            resizeFirefliesCanvas();
-            animateFireflies();
-        }
-
         // Sternenhimmel-Animation
         function initStarfield() {
             console.log("Initialisiere Sternenhimmel-Animation.");
@@ -404,7 +409,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 draw(ctx) {
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+                    ctx.fillStyle = 'rgba(255, 255, 200, ' + this.alpha + ')';
                     ctx.fill();
                 }
             }
